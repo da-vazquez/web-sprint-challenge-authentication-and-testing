@@ -1,4 +1,4 @@
-const supertest = require("supertest")
+/* const supertest = require("supertest")
 const server = require("../api/server")
 const db = require("../data/dbConfig")
 
@@ -52,4 +52,4 @@ describe("login integration tests", () => {
     expect(res.type).toBe("application/json")
     expect(res.body.message).toContain("invalid credentials")
   })
-})
+}) */
