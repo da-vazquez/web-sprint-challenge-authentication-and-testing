@@ -10,11 +10,11 @@ You are not allowed to collaborate during the sprint challenge.
 
 ## Project Setup
 
-- [ ] Fork and clone the repo. Delete your old fork from Github first if you are repeating this Unit.
-- [ ] Open the assignment in Canvas and click on the "Set up git" option.
-- [ ] Follow instructions to set up Codegrade's Webhook and Deploy Key.
-- [ ] Make a commit and push it to Github.
-- [ ] Check to see that Codegrade has accepted your git submission.
+- [x] Fork and clone the repo. Delete your old fork from Github first if you are repeating this Unit.
+- [x] Open the assignment in Canvas and click on the "Set up git" option.
+- [x] Follow instructions to set up Codegrade's Webhook and Deploy Key.
+- [x] Make a commit and push it to Github.
+- [x] Check to see that Codegrade has accepted your git submission.
 
 For a step-by-step on setting up Codegrade see [this guide.](https://www.notion.so/lambdaschool/Submitting-an-assignment-via-Code-Grade-A-Step-by-Step-Walkthrough-07bd65f5f8364e709ecb5064735ce374)
 
@@ -32,9 +32,9 @@ We will hash the user's password using `bcryptjs`, and use JSON Web Tokens and t
 
 Your finished project must include all of the following requirements (further instructions are found inside each file):
 
-- [ ] An authentication workflow with functionality for account creation and login, implemented inside `api/auth/auth-router.js`.
-- [ ] Middleware used to restrict access to resources from non-authenticated requests, implemented inside `api/middleware/restricted.js`.
-- [ ] A minimum of 2 tests per API endpoint, written inside `api/server.test.js`.
+- [x] An authentication workflow with functionality for account creation and login, implemented inside `api/auth/auth-router.js`.
+- [x] Middleware used to restrict access to resources from non-authenticated requests, implemented inside `api/middleware/restricted.js`.
+- [x] A minimum of 2 tests per API endpoint, written inside `api/server.test.js`.
 
 **Notes:**
 

@@ -5,7 +5,7 @@ const mw = require("../middleware/restricted")
 const jwt = require("jsonwebtoken")
 const { JWT_SECRET } = require('./secret')
 
-router.post('/register', mw.checkUsernameDups,  mw.checkBodyValid, async (req, res, next) => {
+router.post('/register', mw.checkUsernameDups, mw.checkBodyValid, async (req, res, next) => {
   try {
     const { username, password } = req.body
     const hash = 8
@@ -30,7 +30,6 @@ router.post('/login', mw.checkBodyValid, (req, res) => {
     
     db.findBy({username}).first()
       .then(user => {
-        
         if(user && bcrypt.compareSync(password, user.password)) {
           console.log(user)
           
@@ -38,12 +37,11 @@ router.post('/login', mw.checkBodyValid, (req, res) => {
             userID: user.id,
             username: user.username,
             expiresIn: "30d",
-            
           }, JWT_SECRET || "keep it secret keep it safe")
+
           res.cookie("token", token)
-          res.json({
-            message: `Welcome back ${req.body.username}`, 
-           
+          res.status(200).json({
+            message: `Welcome back ${req.body.username}`,
           })
         
       } else {

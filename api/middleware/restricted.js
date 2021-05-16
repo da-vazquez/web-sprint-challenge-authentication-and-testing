@@ -11,7 +11,6 @@ const restricted = async (req, res, next) => {
   
       jwt.verify(token, JWT_SECRET, (err, decoded) => {
         if (err) {
-          console.log(err)
           return res.status(401).json({message: "Token invalid"})
         }
   
@@ -24,17 +23,21 @@ const restricted = async (req, res, next) => {
     }
 }
 
-const checkUsernameDups = async (req, res, next) => {
+const checkUsernameDups = (req, res, next) => {
   const username = req.body.username
-  const existingUser = await User.findBy({username})
-    if (existingUser) {
+  User.findBy({username}).first()
+    .then(existingUser => {
+      if (existingUser) {
       return res.status(401).json({message: "Username already taken"})
 
     } else {
       req.existingUser = existingUser
       next()
-  }
+  }}
+  )
 }
+
+
 
 
 const checkBodyValid = (req, res, next) => {
