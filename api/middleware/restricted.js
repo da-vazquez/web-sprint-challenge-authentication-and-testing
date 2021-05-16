@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken")
-
+const User = require("../users/users-model")
 
 const restricted = async (req, res, next) => {
   try {
@@ -8,7 +8,7 @@ const restricted = async (req, res, next) => {
         res.status(401).json({message: "Token required"})
       }
   
-      jwt.verify(token, JWT_SECRET, (err, decoded) => {
+      jwt.verify(token, "shh", (err, decoded) => {
         if (err) {
           console.log(err)
           return res.status(401).json({message: "Token invalid"})
@@ -20,6 +20,27 @@ const restricted = async (req, res, next) => {
   
     } catch(err) {
       next(err)
+    }
+}
+
+const checkUsernameDups = async (req, res, next) => {
+  const username = req.body.username
+  const existingUser = await User.findBy({username})
+    if (existingUser) {
+      return res.status(401).json({message: "Username already taken"})
+
+    } else {
+      req.existingUser = existingUser
+      next()
+  }
+}
+
+
+const checkBodyValid = (req, res, next) => {
+    if (!req.body.username || !req.body.password) {
+      res.status(401).json({message: "Username and Password required"})
+    } else {
+      next()
     }
 }
   
@@ -36,4 +57,8 @@ const restricted = async (req, res, next) => {
   */
 
 
-module.exports = restricted
+module.exports = {
+  restricted,
+  checkUsernameDups,
+  checkBodyValid
+}

@@ -9,14 +9,14 @@ function find() {
 
 function findBy(filter) {
   return db("users")
-    .select("id", "username", "password")
+    .select("id", "username")
     .where(filter)
+    .first()
 }
 
 
 function findById(id) {
   return db("users")
-    .select("id", "username")
     .where({ id })
     .first()
 }
