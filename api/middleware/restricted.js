@@ -1,14 +1,15 @@
 const jwt = require("jsonwebtoken")
+const {JWT_SECRET} = require("../auth/secret")
 const User = require("../users/users-model")
 
 const restricted = async (req, res, next) => {
   try {
-    const token = req.headers.authorization
+    const token = req.cookies.token
       if(!token) {
         res.status(401).json({message: "Token required"})
       }
   
-      jwt.verify(token, "shh", (err, decoded) => {
+      jwt.verify(token, JWT_SECRET, (err, decoded) => {
         if (err) {
           console.log(err)
           return res.status(401).json({message: "Token invalid"})
