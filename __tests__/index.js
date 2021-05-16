@@ -4,9 +4,6 @@ const db = require("../data/dbConfig")
 
 
 
-
-
-
 describe("dad jokes integration tests", () => {
   it("return error message for dad jokes when user not authenticated", async () => {
     const res = await supertest(server).get("/api/jokes")
